@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Vuejs.org | Device 4 Code</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+</head>
+<body>
+  <div id="appVue">  
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6">
+          <h1 v-if="lists.length > 0">Adicionar uma Tarefa</h1>
+          <h1 v-else="lists">Criar uma Tarefa</h1>
+          <input type="text" class="form-control" v-model="newKeep" v-on:keyup.enter="addKeep">
+        </div>
+        <div class="col-sm-6">
+            <h1 v-if="lists.length > 0">Lista de Tarefas</h1>
+            <h1 v-else="lists">Não há tarefas registradas</h1>
+          <ul class="list-group">
+            <li class="list-group-item"
+              v-for="item in lists"
+              v-bind:class="item.completed == true ? 'disabled' : ''"
+              @click="item.completed = !item.completed">
+              {{ item.keep }}
+            </li>            
+          </ul>
+        </div>      
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <hr>
+          <pre>
+            {{ $data | json }}
+          </pre>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="vue.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
